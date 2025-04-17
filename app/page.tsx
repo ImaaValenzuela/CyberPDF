@@ -149,11 +149,24 @@ export default function Home() {
       <footer className="mt-16 border-t border-red-500/20 bg-black/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-yellow-500/70 text-center text-xs">
-              <span className="text-red-500">[</span> CYBER//PDF © {new Date().getFullYear()}{" "}
-              <span className="text-red-500">]</span>
-              <span className="ml-2 text-cyan-500/70">// NIGHT CITY DOCUMENT SYSTEMS</span>
-            </p>
+            <div className="text-center text-xs text-yellow-500/70">
+              <p>
+                <span className="text-red-500">[</span> CYBER//PDF © {new Date().getFullYear()}{" "}
+                <span className="text-red-500">]</span>
+                <span className="ml-2 text-cyan-500/70">// NIGHT CITY DOCUMENT SYSTEMS</span>
+              </p>
+              <p className="mt-1">
+                <span className="text-pink-500/80">crafted by</span>{" "}
+                <a
+                  href="https://github.com/ImaaValenzuela"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 hover:underline"
+                >
+                  ImaaValenzuela
+                </a>
+              </p>
+            </div>
             <p className="text-xs text-red-500/70 mt-2 md:mt-0">
               &lt;UNAUTHORIZED ACCESS WILL BE TRACED AND PROSECUTED&gt;
             </p>
