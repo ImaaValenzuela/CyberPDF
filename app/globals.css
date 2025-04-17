@@ -1,0 +1,613 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Rajdhani", "Orbitron", sans-serif;
+  }
+}
+
+/* Cyberpunk 2077 Styles */
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap");
+
+.cyberpunk-bg {
+  background-color: #0a0a0a;
+  background-image: linear-gradient(0deg, rgba(255, 213, 25, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 213, 25, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  position: relative;
+}
+
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.scanlines:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.05) 51%);
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+.noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/png;base64,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");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 200px rgba(0, 0, 0, 0.9) inset;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Cyber Header */
+.cyber-header {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 0;
+}
+
+.cyber-header:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 5px;
+  height: 100%;
+  background-color: #ff0055;
+  box-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055;
+}
+
+.cyber-text {
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(255, 213, 25, 0.5);
+  font-family: "Orbitron", sans-serif;
+}
+
+/* Cyber Box */
+.cyber-box {
+  border: 1px solid rgba(255, 213, 25, 0.4);
+  background-color: rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-box:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff0055, transparent);
+}
+
+.cyber-box-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 213, 25, 0.1);
+  color: #ffff00;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+/* Cyber Panel */
+.cyber-panel {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.cyber-panel:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+}
+
+.cyber-panel:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ff0055);
+}
+
+.cyber-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 213, 25, 0.2);
+  position: relative;
+}
+
+.cyber-panel-header:after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 30%;
+  height: 1px;
+  background-color: #ff0055;
+  box-shadow: 0 0 10px #ff0055;
+}
+
+/* Cyber Tabs */
+.cyber-tab {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  border: 1px solid rgba(255, 213, 25, 0.2) !important;
+  color: #ffff00 !important;
+  font-family: "Rajdhani", sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  text-transform: uppercase !important;
+}
+
+.cyber-tab:hover {
+  background-color: rgba(255, 213, 25, 0.1) !important;
+}
+
+.cyber-tab-active {
+  background-color: rgba(255, 0, 85, 0.2) !important;
+  border: 1px solid rgba(255, 0, 85, 0.4) !important;
+  color: #00ffff !important;
+  box-shadow: 0 0 10px rgba(255, 0, 85, 0.3) !important;
+}
+
+.cyber-tab-active:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+}
+
+/* Cyber Button */
+.cyber-button {
+  background: linear-gradient(90deg, #ff0055, #ff0055) !important;
+  color: white !important;
+  font-family: "Rajdhani", sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  border: none !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 0 10px rgba(255, 0, 85, 0.5) !important;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 95% 100%, 0 100%) !important;
+}
+
+.cyber-button:hover {
+  background: linear-gradient(90deg, #ff0055, #00ffff) !important;
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.7) !important;
+}
+
+.cyber-button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.5s ease;
+}
+
+.cyber-button:hover:before {
+  left: 100%;
+}
+
+/* Cyber Button Alt - Versión mejorada y más visible */
+.cyber-button-alt {
+  background-color: rgba(255, 0, 85, 0.25) !important;
+  color: #ffffff !important;
+  border: 2px solid #ff0055 !important;
+  font-family: "Rajdhani", sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 0 10px rgba(255, 0, 85, 0.5) !important;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%) !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+.cyber-button-alt:hover {
+  background-color: rgba(255, 0, 85, 0.4) !important;
+  box-shadow: 0 0 15px rgba(255, 0, 85, 0.7) !important;
+  transform: translateY(-2px) !important;
+}
+
+.cyber-button-alt:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: all 0.5s ease;
+}
+
+.cyber-button-alt:hover:before {
+  left: 100%;
+}
+
+.cyber-button-alt:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #ff0055;
+  box-shadow: 0 0 5px #ff0055, 0 0 10px #ff0055;
+}
+
+/* Cyber Dropzone - Mejorado para destacar más la acción */
+.cyber-dropzone {
+  border: 2px dashed rgba(255, 213, 25, 0.5);
+  background-color: rgba(255, 213, 25, 0.07);
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.cyber-dropzone:hover {
+  border-color: rgba(255, 213, 25, 0.8);
+  background-color: rgba(255, 213, 25, 0.15);
+  box-shadow: 0 0 20px rgba(255, 213, 25, 0.2) inset;
+}
+
+.cyber-dropzone-active {
+  border-color: rgba(0, 255, 255, 0.8) !important;
+  background-color: rgba(0, 255, 255, 0.15) !important;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3) inset !important;
+}
+
+.cyber-dropzone:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-bottom: 2px solid #ffff00;
+  border-right: 2px solid #ffff00;
+  opacity: 0.7;
+}
+
+.cyber-dropzone:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-top: 2px solid #ffff00;
+  border-left: 2px solid #ffff00;
+  opacity: 0.7;
+}
+
+/* Cyber List Item */
+.cyber-list-item {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 213, 25, 0.2);
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-list-item:hover {
+  border-color: rgba(0, 255, 255, 0.4);
+  background-color: rgba(0, 255, 255, 0.05);
+}
+
+.cyber-list-item:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background-color: #ff0055;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.cyber-list-item:hover:before {
+  opacity: 1;
+}
+
+/* Cyber Icon Container */
+.cyber-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 0, 85, 0.3);
+  position: relative;
+}
+
+.cyber-icon-container:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 5px;
+  height: 5px;
+  background-color: #ff0055;
+}
+
+.cyber-icon-container:after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 5px;
+  height: 5px;
+  background-color: #00ffff;
+}
+
+/* Cyber Badge */
+.cyber-badge {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #00ffff;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%);
+}
+
+/* Cyber Separator */
+.cyber-separator {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.cyber-separator:before,
+.cyber-separator:after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 213, 25, 0.3), transparent);
+}
+
+.cyber-separator span {
+  padding: 0 1rem;
+  color: rgba(255, 213, 25, 0.7);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-family: "Rajdhani", sans-serif;
+}
+
+/* Cyber Progress */
+.cyber-progress-container {
+  padding: 3px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  position: relative;
+}
+
+.cyber-progress-indicator {
+  background: linear-gradient(90deg, #ff0055, #00ffff) !important;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5) !important;
+  height: 100%;
+}
+
+/* Cyber Alerts */
+.cyber-alert-error {
+  background-color: rgba(255, 0, 85, 0.1) !important;
+  border: 1px solid rgba(255, 0, 85, 0.3) !important;
+  color: #ff0055 !important;
+  font-family: "Rajdhani", sans-serif !important;
+}
+
+.cyber-alert-success {
+  background-color: rgba(0, 255, 255, 0.1) !important;
+  border: 1px solid rgba(0, 255, 255, 0.3) !important;
+  color: #00ffff !important;
+  font-family: "Rajdhani", sans-serif !important;
+}
+
+/* Animations */
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 rgba(255, 0, 85, 0.75), -0.025em -0.05em 0 rgba(0, 255, 255, 0.75), 0.025em 0.05em 0
+      rgba(255, 213, 25, 0.75);
+  }
+  14% {
+    text-shadow: 0.05em 0 0 rgba(255, 0, 85, 0.75), -0.025em -0.05em 0 rgba(0, 255, 255, 0.75), 0.025em 0.05em 0
+      rgba(255, 213, 25, 0.75);
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 85, 0.75), 0.025em 0.025em 0 rgba(0, 255, 255, 0.75), -0.05em -0.05em 0
+      rgba(255, 213, 25, 0.75);
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 85, 0.75), 0.025em 0.025em 0 rgba(0, 255, 255, 0.75), -0.05em -0.05em 0
+      rgba(255, 213, 25, 0.75);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 85, 0.75), 0.05em 0 0 rgba(0, 255, 255, 0.75), 0 -0.05em 0
+      rgba(255, 213, 25, 0.75);
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 85, 0.75), 0.05em 0 0 rgba(0, 255, 255, 0.75), 0 -0.05em 0
+      rgba(255, 213, 25, 0.75);
+  }
+  100% {
+    text-shadow: -0.025em 0 0 rgba(255, 0, 85, 0.75), -0.025em -0.025em 0 rgba(0, 255, 255, 0.75), -0.025em -0.05em 0
+      rgba(255, 213, 25, 0.75);
+  }
+}
+
+/* Añadir al final del archivo */
+
+/* Estilos para elementos arrastrados */
+.cyber-list-item-dragging {
+  background-color: rgba(255, 0, 85, 0.15) !important;
+  border-color: rgba(255, 0, 85, 0.4) !important;
+  box-shadow: 0 0 15px rgba(255, 0, 85, 0.3) !important;
+  z-index: 50 !important;
+  transform-origin: center !important;
+  width: calc(100% - 10px) !important;
+  margin-left: 5px !important;
+  position: relative !important;
+}
+
+/* Contenedor de la lista con scroll vertical */
+.pdf-list-container {
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 5px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 0, 85, 0.5) rgba(0, 0, 0, 0.3);
+}
+
+.pdf-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.pdf-list-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.pdf-list-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 0, 85, 0.5);
+  border-radius: 3px;
+}
